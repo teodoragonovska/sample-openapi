@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  title: Star Wars API
+  description: An API that provides information about characters, planets, starships, and films from the Star Wars universe.
+  version: 1.0.0
+servers:
+  - url: https://swapi.dev/api/
+paths:
+  /people/{id}:
+    get:
+      summary: Get a specific character by ID
+      operationId: getCharacterById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+        '404':
+          description: Not Found
+  /planets/{id}:
+    get:
+      summary: Get a specific planet by ID
+      operationId: getPlanetById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Planet'
+        '404':
+          description: Not Found
+  /starships/{id}:
+    get:
+      summary: Get a specific starship by ID
+      operationId: getStarshipById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Starship'
+        '404':
+          description: Not Found
+  /films/{id}:
+    get:
+      summary: Get a specific film by ID
+      operationId: getFilmById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '404':
+          description: Not Found
+components:
+  schemas:
+    Character:
+      type: object
+      properties:
+        name:
+          type: string
+        height:
+          type: string
+        mass:
+          type: string
+        hair_color:
+          type: string
+        skin_color:
+          type: string
+        eye_color:
+          type: string
+        birth_year:
+          type: string
+        gender:
+          type: string
+        homeworld:
+          type: string
+    Planet:
+      type: object
+      properties:
+        name:
+          type: string
+        rotation_period:
+          type: string
+        orbital_period:
+          type: string
+        diameter:
+          type: string
+        climate:
+          type: string
+        gravity:
+          type: string
+        terrain:
+          type: string
+        surface_water:
+          type: string
+        population:
+          type: string
+    Starship:
+      type: object
+      properties:
+        name:
+          type: string
+        model:
+          type: string
+        manufacturer:
+          type: string
+        cost_in_credits:
+          type: string
+        length:
+          type: string
