@@ -43,9 +43,9 @@ pipeline {
                     script {
                         // Adjust the script based on the OS
                         if (isUnix()) {
-                            sh './mvnw spring-boot:run -Dserver.port=8090'
+                            sh './mvnw spring-boot:run -Dserver.port=8080'
                         } else {
-                            bat '.\\mvnw spring-boot:run -Dserver.port=8090'
+                            bat '.\\mvnw spring-boot:run -Dserver.port=8080'
                         }
                     }
                 }
