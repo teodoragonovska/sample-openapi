@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    environment {
+        // Define environment variables for your app, if needed
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                // This stage checks out your code from your GitHub repository
+                git(url: 'https://github.com/your-username/your-repo.git', branch: 'main')
+            }
+        }
+        stage('Set Up Virtual Environment') {
+            steps {
+                // This stage sets up a virtual environment for your Python project
+                sh 'python -m venv venv'
+                sh 'source venv/bin/activate' // On Windows: 'venv\\Scripts\\activate.bat'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                // Install Python dependencies using pip
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                // Run any automated tests you have for your Flask app
+                sh 'pytest'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Start your Flask app using a production-ready WSGI server like Gunicorn
+                sh 'gunicorn -b 0.0.0.0:8000 app:app &'
+            }
+        }
+    }
+    post {
+        success {
+            // Notify success and provide a link to the deployed app
+            slackSend (color: 'good', message: "Deployment successful! Access your app at: https://your-app-url.com")
+        }
+        failure {
+            // Notify failure and provide information for debugging
+            slackSend (color: 'danger', message: "Deployment failed. Check the Jenkins logs for details.")
+        }
+    }
+}
