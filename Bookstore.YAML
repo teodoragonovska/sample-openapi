@@ -156,3 +156,4 @@ components:
         publication_date:
           type: string
           format: date
+          format: date
