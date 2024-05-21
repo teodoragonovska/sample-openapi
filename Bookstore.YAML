@@ -99,7 +99,7 @@ paths:
 
 components:
   schemas:
-    Book:
+    NeBook:
       type: object
       properties:
         id:
