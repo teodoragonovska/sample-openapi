@@ -99,7 +99,7 @@ paths:
 
 components:
   schemas:
-    Book:
+    NeBook:
       type: object
       properties:
         id:
@@ -155,5 +155,4 @@ components:
           type: string
         publication_date:
           type: string
-          format: date
           format: date
